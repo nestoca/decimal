@@ -1785,7 +1785,7 @@ func (d Decimal) MarshalJSON() ([]byte, error) {
 	if MarshalJSONWithoutQuotes {
 		str = d.String()
 	} else {
-		str = "\"" + d.String() + "\""
+		str = "\"" + d.string(false) + "\""
 	}
 	return []byte(str), nil
 }
