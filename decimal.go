@@ -2337,3 +2337,19 @@ func (d Decimal) Tan() Decimal {
 	}
 	return y
 }
+
+// DecimalClientFacing represent a decimal that will end up being sent to the front-end
+type DecimalClientFacing struct {
+	Decimal
+}
+
+// MarshalJSON implements the json.Marshaler interface.
+func (d DecimalClientFacing) MarshalJSON() ([]byte, error) {
+	var str string
+	if MarshalJSONWithoutQuotes {
+		str = d.StringFixedBank(2)
+	} else {
+		str = "\"" + d.StringFixedBank(2) + "\""
+	}
+	return []byte(str), nil
+}

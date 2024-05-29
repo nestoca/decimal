@@ -7,3 +7,4 @@
 
 # VS code
 *.code-workspace
+.vscode
